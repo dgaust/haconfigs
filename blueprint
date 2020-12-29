@@ -44,6 +44,9 @@ blueprint:
           
 mode: restart
 
+variables:
+  force_brightness: !input force_brightness
+  
 trigger:
 - platform: event
   event_type: deconz_event
@@ -62,6 +65,7 @@ action:
       target: !input 'light'
       data:
         transition: 1
+        brightness: !input brightness
   - conditions:
     - "{{ event == 2002 }}"
     sequence:
