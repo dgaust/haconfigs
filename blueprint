@@ -65,7 +65,7 @@ action:
       target: !input 'light'
       data:
         transition: 1
-        brightness: !input brightness
+        brightness: 100
   - conditions:
     - "{{ event == 2002 }}"
     sequence:
