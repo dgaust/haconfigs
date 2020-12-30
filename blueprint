@@ -45,14 +45,14 @@ blueprint:
 mode: restart
 
 variables:
-  force_brightness: !input 'force_brightness'
-  brightness: !input 'brightness'
+  force_brightness: !input force_brightness
+  new_brightness: !input brightness
   
 trigger:
 - platform: event
   event_type: deconz_event
   event_data:
-    device_id: !input 'remote'
+    device_id: !input remote
 
 action:
 - variables:
@@ -63,15 +63,15 @@ action:
     - "{{ event == 1002 }}"
     sequence:
     - service: light.turn_on
-      target: !input 'light'
+      target: !input light
       data:
         transition: 1
-        brightness: 100
+        brightness: !input brightness
   - conditions:
     - "{{ event == 2002 }}"
     sequence:
     - service: light.turn_off
-      target: !input 'light'
+      target: !input light
       data:
         transition: 1
   - conditions:
@@ -83,7 +83,7 @@ action:
           value_template: "{{ repeat.index < 10 }}"
         sequence:
         - service: light.turn_on
-          target: !input 'light'
+          target: !input light
           data:
             transition: 1
             brightness_step_pct: 10
@@ -97,7 +97,7 @@ action:
           value_template: "{{ repeat.index < 10 }}"
         sequence:
         - service: light.turn_on
-          target: !input 'light'
+          target: !input light
           data:
             transition: 1
             brightness_step_pct: -10
@@ -106,9 +106,9 @@ action:
     - "{{ event == 1003 }}"
     sequence:
     - service: light.turn_on
-      target: !input 'light'
+      target: !input light
   - conditions:
     - "{{ event == 2003 }}"
     sequence:
     - service: light.turn_on
-      target: !input 'light'
+      target: !input light
