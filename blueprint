@@ -49,11 +49,10 @@ variables:
   new_brightness: !input "brightness"
   
 trigger:
-- platform: event
-  event_type: deconz_event
-  event_data:
-    device_id: !input "remote"
-
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      device_id: !input "remote"
 action:
 - variables:
     event: "{{ trigger.event.data.event }}"
