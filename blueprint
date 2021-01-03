@@ -43,10 +43,7 @@ blueprint:
           unit_of_measurement: "%"
           
 mode: restart
-
-variables:
-  force_brightness: !input force_brightness
-  
+ 
 trigger:
   - platform: event
     event_type: deconz_event
